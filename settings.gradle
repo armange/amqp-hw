@@ -1,0 +1,5 @@
+rootProject.name = 'amqp-hw'
+include 'service-one',
+	'mq-common',
+	'mq-tester',
+	'common'

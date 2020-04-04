@@ -1,0 +1,49 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+    withDependencies { dependencies ->
+        dependencies.each { dependency ->
+            exclude group: 'ch.qos.logback'
+        }
+    }
+}
+
+dependencies {
+    compile project(':mq-common')
+    compile "org.apache.commons:commons-lang3:3.9"
+    
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+    testImplementation'org.springframework.security:spring-security-test'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    
+    testCompile 'org.hamcrest:hamcrest:2.1'
+    testCompile 'org.mockito:mockito-core:3.1.0'
+    testCompile 'org.apache.commons:commons-lang3:3.10'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task buildDockerImage(type:Exec) {
+    workingDir "$projectDir"
+    
+    commandLine "docker", "build", "--build-arg", "JAR_FILE=build/libs/*.jar", "-t", "diegoarmangecosta/$rootProject.name-$project.name:$project.version", "."
+}
+
+buildDockerImage.dependsOn build

@@ -1,0 +1,19 @@
+version = '1.0.0-SNAPSHOT'
+
+allprojects {
+    group = 'com.br.amqphw'
+}
+
+task installFrontend(type:Exec) {
+    workingDir "$projectDir/mq-tester"
+    
+    commandLine "npm", "install"
+}
+
+task buildFrontendDockerImage(type:Exec) {
+    workingDir "$projectDir/mq-tester"
+    
+    commandLine "docker", "build", "-t", "diegoarmangecosta/$rootProject.name-mq-tester:1.0.0-SNAPSHOT", "."
+}
+
+buildFrontendDockerImage.dependsOn installFrontend

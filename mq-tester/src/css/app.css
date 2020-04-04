@@ -1,0 +1,110 @@
+.header, .title {
+    text-align: center;
+}
+
+.alert.alert-warning.issue-alert,
+.alert.alert-danger.issue-alert,
+.alert.alert-info.issue-alert,
+.alert.alert-success.issue-alert {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+.form-control.text-area,
+.form-control.input-text,
+.form-control.input-text:-internal-autofill-selected {
+    background-color: #555 !important;
+    color: #fff;
+    border: 1px solid #888;
+    resize: none;
+}
+
+.form-control.input-text:disabled,
+.form-control.text-area:disabled {
+    color: #aaa;
+    background-color: #555;
+    border-color: #444;
+}
+
+.form-control.text-area:focus,
+.form-control.input-text:focus{
+    background-color: #555;
+    color: #fff;    
+}
+
+.queue-container {
+    display: flex;
+}
+
+.message-container {
+    display: flex;
+}
+
+.message-container-item {
+    width: 50%;
+    border: solid 1px #888;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #444;
+}
+
+.message-container-item input,
+.message-container-item textarea {
+    margin: 0px 0px 10px 0px;
+}
+
+.input-text.queue-name {
+    width: 50%;
+}
+
+.btn.btn-primary.queue-button {
+    width: 85px;
+    margin-left: auto;
+    height: 40px;
+}
+
+.input-text.last-queue {
+    width: 20%;
+}
+
+.input-text.last-message {
+    width: 80%;
+}
+
+.last-item-container {
+    display: flex;
+}
+
+.last-item-container *:not(:last-child) {
+    margin-right: 5px;
+}
+
+.last-item-container *:not(:first-child) {
+    margin-left: 5px;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+h2, h3, h4, h5, h6, label {
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+}
+
+body {
+    background-color: #333 !important;
+}
+
+div:not(.internal-div) {
+    padding: 10px;
+}
+
+hr {
+    background-color: #fff;
+}
