@@ -64,24 +64,23 @@
     height: 40px;
 }
 
-.input-text.last-queue {
-    width: 20%;
-}
-
+.input-text.last-queue,
 .input-text.last-message {
-    width: 80%;
+    width: 100%;
 }
 
 .last-item-container {
     display: flex;
 }
 
-.last-item-container *:not(:last-child) {
+.last-item-container div:not(:last-child) {
     margin-right: 5px;
+    width: 20%;
 }
 
-.last-item-container *:not(:first-child) {
+.last-item-container div:not(:first-child) {
     margin-left: 5px;
+    width: 80%;
 }
 
 #app {

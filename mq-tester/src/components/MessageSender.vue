@@ -23,10 +23,15 @@
       </div>
     </form>
     <hr />
-    <h5>Last sent</h5>
     <div class="last-item-container internal-div">
-      <input v-model="lastQueue" type="text" class="form-control input-text last-queue" disabled/>
-      <input v-model="lastMessage" type="text" class="form-control input-text last-message" disabled/>
+      <div class="internal-div">
+        <label for="last-queue-sent">Last Queue</label>
+        <input id="last-queue-sent" v-model="lastQueue" type="text" class="form-control input-text last-queue" disabled/>
+      </div>
+      <div class="internal-div">
+        <label for="last-message-sent">Last Message</label>
+        <input id="last-message-sent" v-model="lastMessage" type="text" class="form-control input-text last-message" disabled/>
+      </div>
     </div>
   </div>
 </template>

@@ -25,10 +25,15 @@
         disabled
         v-model="message"></textarea>
     <hr />
-    <h5>Last received</h5>
     <div class="last-item-container internal-div">
-      <input v-model="lastQueue" type="text" class="form-control input-text last-queue" disabled/>
-      <input v-model="lastMessage" type="text" class="form-control input-text last-message" disabled/>
+      <div class="internal-div">
+        <label for="last-queue-received">Last Queue</label>
+        <input id="last-queue-received" v-model="lastQueue" type="text" class="form-control input-text last-queue" disabled/>
+      </div>
+      <div class="internal-div">
+        <label for="last-message-received">Last Message</label>
+        <input id="last-message-received" v-model="lastMessage" type="text" class="form-control input-text last-message" disabled/>
+      </div>
     </div>
   </div>
 </template>
