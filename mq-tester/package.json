@@ -1,5 +1,5 @@
 {
-  "name": "receiver-frontend",
+  "name": "mq-tester",
   "version": "1.0.0-SNAPSHOT",
   "private": true,
   "scripts": {
