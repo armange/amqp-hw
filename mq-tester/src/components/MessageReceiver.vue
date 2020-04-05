@@ -48,11 +48,13 @@ export default {
       queue: "",
       requestedQueue: "",
       lastQueue: "",
-      lastMessage: ""
+      lastMessage: "",
+      attemptToSend: false
     }
   },
   methods: {
     getMessage() {
+      this.attemptToSend = true
       if (this.checkForm()) {
         MessageQueueService.getMessage(this.queue, 
         this.setLastMessage, 
@@ -67,13 +69,11 @@ export default {
             } else if (error.response.data.status == 502) {
               this.warns.push(error.response.data.message)
               
-              console.warn({'info':error})
+              console.warn({'warn':error})
 
               this.emitWarn()
             } else {
-              this.errors = []
-              this.errors.push(error)
-              this.emitError()
+              this.emitGenericError(error)
             }
           } else if (error.message == 'Network Error') {
             this.warns.push('The backend server was not found')
@@ -82,12 +82,17 @@ export default {
 
             this.emitWarn()
           } else {
-            this.errors = []
-            this.errors.push(error)
-            this.emitError()
+            this.emitGenericError(error)
           }
         })
+        this.attemptToSend = false
       }
+    },
+
+    emitGenericError(error) {
+      this.errors = []
+      this.errors.push(error)
+      this.emitError()
     },
 
     setLastMessage(response) {
@@ -139,9 +144,10 @@ export default {
       this.infos = []
     }
   },
+
   computed: {
     hasNoQueue() {
-      return this.warns.length && !this.queue;
+      return this.attemptToSend && !this.queue;
     },
   }
 };

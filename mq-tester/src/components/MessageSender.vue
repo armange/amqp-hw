@@ -45,11 +45,13 @@ export default {
       message: "",
       queue: "",
       lastQueue: "",
-      lastMessage: ""
+      lastMessage: "",
+      attemptToSend: false
     }
   },
   methods: {
     sendMessage() {
+      this.attemptToSend=true
       if (this.checkForm()) {
         MessageQueueService.sendMessage(this.queue, this.message, this.setLastMessage, error => {
           if (error && error.response && error.response.data) {
@@ -60,9 +62,7 @@ export default {
 
               this.emitWarn()
             } else {
-              this.errors = []
-              this.errors.push(error)
-              this.emitError()
+              this.emitGenericError()
             }
           } else if (error.message == 'Network Error') {
             this.warns['backend'] = 'The backend server was not found'
@@ -71,12 +71,17 @@ export default {
 
             this.emitWarn()
           } else {
-            this.errors = []
-            this.errors.push(error)
-            this.emitError()
+            this.emitGenericError()
           }
         })
+        this.attemptToSend=false
       }
+    },
+
+    emitGenericError(error){
+      this.errors = []
+      this.errors.push(error)
+      this.emitError()
     },
 
     setLastMessage() {
@@ -140,11 +145,11 @@ export default {
 
   computed: {
     hasNoQueue() {
-      return Object.keys(this.warns).length && !this.queue;
+      return this.attemptToSend && !this.queue;
     },
 
     hasNoMessage() {
-      return Object.keys(this.warns).length && !this.message
+      return this.attemptToSend && !this.message
     },
   }
 };
