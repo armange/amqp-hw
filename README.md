@@ -16,7 +16,7 @@ docker run -it --rm --name middleware -p 5672:5672 -p 15672:15672 rabbitmq:3-man
 2. Start one or more services to exchange messages with each other.
 
 ```shell
-docker run -it --rm --name my-service -e "BR_COM_AMQP_HW_MIDDLEWARE_HOST=<middleware-ip>" -p 4321:4321 diegoarmangecosta/amqp-hw-service-one:1.0.0-SNAPSHOT
+docker run -it --rm --name my-service -e "BR_COM_AMQP_HW_MIDDLEWARE_HOST=<ip>" -p 4321:4321 diegoarmangecosta/amqp-hw-service-one:1.0.0-SNAPSHOT
 ```
 
 2.1 **Optionally**, a service can be started with a continuous sending message thread.
@@ -24,10 +24,11 @@ docker run -it --rm --name my-service -e "BR_COM_AMQP_HW_MIDDLEWARE_HOST=<middle
 A new message will be sent to the middleware each five seconds.
 
 ```shell
-docker run -it --rm --name repeater -e "BR_COM_AMQP_HW_MIDDLEWARE_HOST=<middleware-ip>" -e "BR_COM_AMQP_HW_START_CONTINUOUS_MESSAGE_SENDING=true" -p 4321:4321 diegoarmangecosta/amqp-hw-service-one:1.0.0-SNAPSHOT
+docker run -it --rm --name repeater -e "BR_COM_AMQP_HW_MIDDLEWARE_HOST=<ip>" -e "BR_COM_AMQP_HW_START_CONTINUOUS_MESSAGE_SENDING=true" -p 4321:4321 diegoarmangecosta/amqp-hw-service-one:1.0.0-SNAPSHOT
 ```
 
 3. **Optionally**, start the frontend to test the sending and receiving messages(over port 4321).
 ```shell
-docker run -it --rm --name frontend diegoarmangecosta/amqp-hw-mq-tester:1.0.0-SNAPSHOT
+docker run -it --rm --name frontend -e "VUE_APP_MESSAGE_QUEUE_ENDPOINT_HOST=<ip>" -p 8080:8080 diegoarmangecosta/amqp-hw-mq-tester:1.0.0-SNAPSHOT 
+
 ```
