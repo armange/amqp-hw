@@ -32,3 +32,7 @@ docker run -it --rm --name repeater -e "BR_COM_AMQP_HW_MIDDLEWARE_HOST=<ip>" -e 
 docker run -it --rm --name frontend -e "VUE_APP_MESSAGE_QUEUE_ENDPOINT_HOST=<ip>" -p 8080:8080 diegoarmangecosta/amqp-hw-mq-tester:1.0.0-SNAPSHOT 
 
 ```
+
+### API-Doc:
+
+[http://yourhost:4321/swagger-ui.html](#)
