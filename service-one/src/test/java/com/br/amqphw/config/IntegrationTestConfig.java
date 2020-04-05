@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 import com.br.amqphw.mqcommon.mq.ReceiverMQ;
 import com.br.amqphw.mqcommon.mq.SenderMQ;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
+@Profile("test")
 public class IntegrationTestConfig {
     public static final String MOCKED_MESSAGE = "Mocked message";
 
