@@ -4,7 +4,7 @@ export default {
     name: 'MessageQueueService',
     getMessage(queue, success, fail) {
         axios
-            .get(this.getBasePath() + queue + '/receive',
+            .get(`${this.getBasePath()}amqp/${queue}/receive`,
                 {
                     auth: {
                         username: 'user',
@@ -16,7 +16,7 @@ export default {
     },
     sendMessage(queue, message, success, fail) {
         axios
-            .post(this.getBasePath() + queue + '/send',
+            .post(`${this.getBasePath()}amqp/${queue}/send`,
                 message
                 , {
                     headers: { 'Content-Type': 'text/plain' },
