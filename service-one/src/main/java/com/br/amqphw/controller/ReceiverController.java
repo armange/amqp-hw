@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.amqphw.service.ReceiverService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @CrossOrigin("*")
+@Api(value = "Receiver")
 public class ReceiverController {
     
     private final ReceiverService receiverService;
@@ -22,6 +26,7 @@ public class ReceiverController {
         this.receiverService = receiverService;
     }
     
+    @ApiOperation(value = "Receives a message from a queue")
     @RequestMapping(value = "/amqp/{queue_name}/receive", method = GET, produces = "application/json")
     public ResponseEntity<String> receiveQueue(@PathVariable("queue_name") final String queueName) {
         return ResponseEntity.ok(receiverService.receiveMessage(queueName));

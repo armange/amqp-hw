@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.amqphw.mqcommon.mq.QueueMessage;
 import com.br.amqphw.service.SenderService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @CrossOrigin("*")
+@Api(value = "Sender")
 public class SenderController {
     
     private final SenderService senderService;
@@ -30,6 +34,7 @@ public class SenderController {
         this.serviceName = serviceName;
     }
     
+    @ApiOperation(value = "Sends a message to a queue")
     @RequestMapping(value = "/amqp/{queue_name}/send", method = POST)
     public ResponseEntity<Void> postQueue(
             @PathVariable("queue_name") final String queueName, 
