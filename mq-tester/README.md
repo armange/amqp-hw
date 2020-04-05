@@ -1,4 +1,4 @@
-# receiver-frontend
+# MQ-TESTER
 
 ## Project setup
 ```
