@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@ActiveProfiles("mock-message-queue")
 public class ServiceOneApplicationTest {
     private static final String SLASH = "/";
     private static final String HTTP_LOCALHOST = "http://localhost:";

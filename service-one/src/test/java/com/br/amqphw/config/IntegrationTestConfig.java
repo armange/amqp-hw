@@ -17,7 +17,7 @@ import com.br.amqphw.mqcommon.mq.SenderMQ;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Configuration
-@Profile("test")
+@Profile("mock-message-queue")
 public class IntegrationTestConfig {
     public static final String MOCKED_MESSAGE = "Mocked message";
 
